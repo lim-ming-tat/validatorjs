@@ -44,7 +44,14 @@ Validator.prototype = {
    */
   attributeFormatter: Attributes.formatter,
 
-  /**
+ /**
+   * Expose Attribute formatter for customization.
+   *
+   * @type {function}
+   */
+ replacements: Attributes.replacements,
+
+ /**
    * Run validator
    *
    * @return {boolean} Whether it passes; true = passes, false = fails
@@ -578,6 +585,17 @@ Validator.getDefaultLang = function () {
  */
 Validator.setAttributeFormatter = function (func) {
   this.prototype.attributeFormatter = func;
+};
+
+/**
+ * Add/Update the attribute formatter.
+ *
+ * @param {string} formatter
+ * @param {fuction} func
+ * @return {void}
+ */
+ Validator.addAttributeFormatter = function (formatter, func) {
+  this.prototype.replacements[formatter] = func
 };
 
 /**
